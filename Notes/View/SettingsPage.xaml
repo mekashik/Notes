@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.View.SettingsPage"
+             Title="Настройки"
+             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Card с темой -->
+            <Frame CornerRadius="16"
+                   Padding="16"
+                   BorderColor="#66CCFF"
+                   BackgroundColor="{AppThemeBinding Light=#F0F8FF, Dark=#1E3A5F}"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Тема оформления"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"/>
+
+                    <Label Text="Выберите тему, которая вам нравится"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"/>
+
+                    <Frame CornerRadius="12"
+                           Padding="0"
+                           BorderColor="Transparent"
+                           BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A4A7F}">
+                        <Picker x:Name="ThemePicker"
+                                Title="Выберите тему"
+                                SelectedIndexChanged="OnThemeChanged"
+                                TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"
+                                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A4A7F}"
+                                TitleColor="#0099FF"
+                                FontSize="14">
+                            <Picker.Items>
+                                <x:String>Светлая</x:String>
+                                <x:String>Тёмная</x:String>
+                                <x:String>Системная</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Frame>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Card с сортировкой -->
+            <Frame CornerRadius="16"
+                   Padding="16"
+                   BorderColor="#66CCFF"
+                   BackgroundColor="{AppThemeBinding Light=#E6F7FF, Dark=#0F2540}"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Сортировка заметок"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"/>
+
+                    <Label Text="Выберите способ сортировки"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"/>
+
+                    <Frame CornerRadius="12"
+                           Padding="0"
+                           BorderColor="Transparent"
+                           BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A4A7F}">
+                        <Picker x:Name="SortPicker"
+                                Title="Выберите сортировку"
+                                SelectedIndexChanged="OnSortChanged"
+                                TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"
+                                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A4A7F}"
+                                TitleColor="#0099FF"
+                                FontSize="14">
+                            <Picker.Items>
+                                <x:String>По дате (новые первыми)</x:String>
+                                <x:String>По дате (старые первыми)</x:String>
+                                <x:String>По названию (А-Я)</x:String>
+                                <x:String>По названию (Я-А)</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Frame>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Card с информацией о приложении -->
+            <Frame CornerRadius="16"
+                   Padding="16"
+                   BorderColor="#66CCFF"
+                   BackgroundColor="{AppThemeBinding Light=#E6F7FF, Dark=#0F2540}"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Статистика"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"/>
+
+                    <Label x:Name="TotalNotesLabel"
+                           Text="Всего заметок: 0"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"/>
+
+                    <Label x:Name="FavoritesCountLabel"
+                           Text="Заметок в избранном: 0"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"/>
+
+                    <Label x:Name="TotalImagesLabel"
+                           Text="Всего изображений: 0"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Card с информацией об приложении -->
+            <Frame CornerRadius="16"
+                   Padding="16"
+                   BorderColor="#66CCFF"
+                   BackgroundColor="{AppThemeBinding Light=#E6F7FF, Dark=#0F2540}"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="О приложении"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"/>
+
+                    <Label Text="Notes App v1.0"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"/>
+
+                    <Label Text="Интуитивное приложение для заметок с поддержкой изображений и избранного. Разработка: Лобанова Карина. Курсовая работа, 2026."
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                           LineBreakMode="WordWrap"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Кнопка для очистки данных -->
+            <Button Text="Удалить все заметки"
+                    WidthRequest="200"
+                    HeightRequest="45"
+                    CornerRadius="12"
+                    BackgroundColor="#FF6B6B"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Clicked="OnClearAllClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

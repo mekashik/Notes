@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="Notes.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Notes"
+    xmlns:view="clr-namespace:Notes.View"
+    Shell.TabBarBackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}"
+    Shell.TabBarForegroundColor="{AppThemeBinding Light=#0099FF, Dark=#66CCFF}"
+    Shell.TabBarTitleColor="{AppThemeBinding Light=#333333, Dark=#E8E8E8}"
+    Shell.TabBarUnselectedColor="{AppThemeBinding Light=#CCCCCC, Dark=#555555}">
+
+    <TabBar>
+        <!-- Главная -->
+        <ShellContent
+            Title="Заметки"
+            Icon="homepage.png"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage"/>
+
+        <!-- Избранное -->
+        <ShellContent
+            Title="Избранное"
+            Icon="star_empty.png"
+            ContentTemplate="{DataTemplate view:FavoritesPage}"
+            Route="FavoritesPage"/>
+
+        <!-- Настройки -->
+        <ShellContent
+            Title="Настройки"
+            Icon="settings.png"
+            ContentTemplate="{DataTemplate view:SettingsPage}"
+            Route="SettingsPage"/>
+    </TabBar>
+
+</Shell>
