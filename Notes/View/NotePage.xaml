@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Notes.NotePage"
              Title="Заметка"
-             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
+             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}"
+             Shell.TitleColor="{AppThemeBinding Light=#0099FF, Dark=#66CCFF}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
             <!-- Заголовок -->
-            <Label Text="✏️ Редактор заметки"
+            <Label Text="Редактор заметки"
                    FontSize="20"
                    FontAttributes="Bold"
                    TextColor="#0099FF"/>
@@ -43,7 +45,7 @@
             </Frame>
 
             <!-- Коллекция изображений -->
-            <Label Text="📷 Изображения"
+            <Label Text="Изображения"
                    FontSize="14"
                    FontAttributes="Bold"
                    TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"/>
@@ -58,33 +60,39 @@
                                 ItemsLayout="HorizontalList">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="0" Margin="4">
+                            <StackLayout Padding="2" Margin="8">
                                 <!-- Кнопка добавления изображений -->
                                 <Button x:Name="AddImageButton"
-                                        Text="➕"
-                                        WidthRequest="120"
-                                        HeightRequest="120"
+                                        Text="+"
+                                        WidthRequest="130"
+                                        HeightRequest="130"
                                         CornerRadius="12"
-                                        BackgroundColor="Transparent"
-                                        TextColor="#0099FF"
-                                        FontSize="32"
+                                        BackgroundColor="#0099FF"
+                                        TextColor="#6AFFCA"
+                                        FontSize="48"
                                         Clicked="OnAddImageClicked"
                                         IsVisible="{Binding IsAddButton}"/>
 
                                 <!-- Изображение -->
                                 <Frame CornerRadius="12"
-                                       Padding="0"
-                                       BorderColor="Transparent"
-                                       BackgroundColor="Transparent"
-                                       IsVisible="{Binding IsImage}">
+                                   Padding="0"
+                                   WidthRequest="130"
+                                   HeightRequest="130"
+                                   BorderColor="Transparent"
+                                   BackgroundColor="Transparent"
+                                   IsVisible="{Binding IsImage}"
+                                   HasShadow="False">
+
                                     <Image Source="{Binding ImagePath}"
-                                           WidthRequest="120"
-                                           HeightRequest="120"
-                                           Aspect="AspectFill">
+                                       Aspect="AspectFill"
+                                       WidthRequest="130"
+                                       HeightRequest="130">
+
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnImageTapped"
-                                                                  CommandParameter="{Binding ImagePath}"/>
+                                              CommandParameter="{Binding ImagePath}"/>
                                         </Image.GestureRecognizers>
+
                                     </Image>
                                 </Frame>
                             </StackLayout>

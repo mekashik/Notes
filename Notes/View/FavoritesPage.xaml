@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Notes.View.FavoritesPage"
              Title="Избранное"
-             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
+             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}"
+             Shell.TitleColor="{AppThemeBinding Light=#0099FF, Dark=#66CCFF}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
 
     <Grid RowDefinitions="*" ColumnDefinitions="*">
         <ScrollView Grid.Row="0" Grid.Column="0">
@@ -81,10 +83,6 @@
                              Spacing="10"
                              VerticalOptions="CenterAndExpand"
                              HorizontalOptions="CenterAndExpand">
-                    <Label Text="⭐"
-                           FontSize="48"
-                           HorizontalOptions="Center"
-                           TextColor="#0099FF"/>
                     <Label Text="Избранное пусто"
                            FontSize="18"
                            FontAttributes="Bold"

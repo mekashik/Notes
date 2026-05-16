@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Notes.MainPage"
              Title="Заметки"
-             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
+             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}"
+             Shell.TitleColor="{AppThemeBinding Light=#0099FF, Dark=#66CCFF}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
 
     <Grid RowDefinitions="Auto,*" Padding="0" RowSpacing="0">
 

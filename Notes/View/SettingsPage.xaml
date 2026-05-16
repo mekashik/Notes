@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Notes.View.SettingsPage"
              Title="Настройки"
-             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
+             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}"
+             Shell.TitleColor="{AppThemeBinding Light=#0099FF, Dark=#66CCFF}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
@@ -124,7 +126,7 @@
                            FontAttributes="Bold"
                            TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"/>
 
-                    <Label Text="Notes App v1.0"
+                    <Label Text="Заметки v1.0"
                            FontSize="13"
                            TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"/>
 
