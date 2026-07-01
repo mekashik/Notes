@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.NotePage"
+             Title="Заметка"
+             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}"
+             Shell.TitleColor="{AppThemeBinding Light=#FFFFFF, Dark=#66CCFF}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#0099FF, Dark=#0F1419}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Заголовок -->
+            <Label Text="Редактор заметки"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#0099FF"/>
+
+            <!-- Название -->
+            <Frame CornerRadius="12"
+                   Padding="12"
+                   BorderColor="#66CCFF"
+                   BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#1E2328}"
+                   HasShadow="True">
+                <Entry x:Name="TitleEntry"
+                       Placeholder="Название заметки"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"
+                       PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"/>
+            </Frame>
+
+            <!-- Текст заметки -->
+            <Frame CornerRadius="12"
+                   Padding="12"
+                   BorderColor="#66CCFF"
+                   BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#1E2328}"
+                   HasShadow="True">
+                <Editor x:Name="ContentEditor"
+                        Placeholder="Текст заметки..."
+                        AutoSize="TextChanges"
+                        HeightRequest="200"
+                        TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"
+                        PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"/>
+            </Frame>
+
+            <!-- Коллекция изображений -->
+            <Label Text="Изображения"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"/>
+
+            <Frame CornerRadius="12"
+                   Padding="8"
+                   BorderColor="#66CCFF"
+                   BackgroundColor="{AppThemeBinding Light=#F0F8FF, Dark=#1E3A5F}"
+                   HasShadow="True">
+                <CollectionView x:Name="ImagesCollection"
+                                HeightRequest="150"
+                                ItemsLayout="HorizontalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="2" Margin="8">
+                                <!-- Кнопка добавления изображений -->
+                                <Button x:Name="AddImageButton"
+                                        Text="+"
+                                        WidthRequest="130"
+                                        HeightRequest="130"
+                                        CornerRadius="12"
+                                        BackgroundColor="#0099FF"
+                                        TextColor="#6AFFCA"
+                                        FontSize="48"
+                                        Clicked="OnAddImageClicked"
+                                        IsVisible="{Binding IsAddButton}"/>
+
+                                <!-- Изображение -->
+                                <Frame CornerRadius="12"
+                                   Padding="0"
+                                   WidthRequest="130"
+                                   HeightRequest="130"
+                                   BorderColor="Transparent"
+                                   BackgroundColor="Transparent"
+                                   IsVisible="{Binding IsImage}"
+                                   HasShadow="False">
+
+                                    <Image Source="{Binding ImagePath}"
+                                       Aspect="AspectFill"
+                                       WidthRequest="130"
+                                       HeightRequest="130">
+
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnImageTapped"
+                                              CommandParameter="{Binding ImagePath}"/>
+                                        </Image.GestureRecognizers>
+
+                                    </Image>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+            <!-- Кнопки -->
+            <HorizontalStackLayout HorizontalOptions="Center"
+                       Spacing="12"
+                       Margin="0,10,0,0">
+
+                <Button Text="Сохранить"
+            HeightRequest="50"
+            CornerRadius="12"
+            BackgroundColor="#0099FF"
+            TextColor="White"
+            FontAttributes="Bold"
+            Clicked="OnSaveClicked"/>
+
+                <Button Text="Вернуться"
+            HeightRequest="50"
+            CornerRadius="12"
+            BackgroundColor="{AppThemeBinding Light=#E0E0E0, Dark=#2A2A2A}"
+            TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"
+            FontAttributes="Bold"
+            Clicked="OnBackButtonClicked"/>
+
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android</TargetFrameworks>
+		<RuntimeIdentifier>android-arm64</RuntimeIdentifier>
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Notes</RootNamespace>
+		<AssemblyName>Notes</AssemblyName>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<ApplicationTitle>Notes</ApplicationTitle>
+		<ApplicationId>com.companyname.notes</ApplicationId>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+
+		<!-- Полное отключение AOT -->
+		<AndroidEnableAOT>false</AndroidEnableAOT>
+		<AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+		<RunAOTCompilation>false</RunAOTCompilation>
+
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidSigningKeyStore>key.keystore</AndroidSigningKeyStore>
+
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+		<AndroidEnableAOT>false</AndroidEnableAOT>
+		<AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0099FF" />
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.82" />
+		<!-- Используем актуальную версию Syncfusion, которая совместима с .NET 9 -->
+		<PackageReference Include="Syncfusion.Maui.Core" Version="33.2.12" />
+		<PackageReference Include="Syncfusion.Maui.ImageEditor" Version="33.2.12" />
+		<!-- AndroidX пакеты не указываем явно – они будут подтянуты автоматически -->
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="ViewModel\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Update="View\NotePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="View\SettingsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="View\FavoritesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="View\ImagePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
+</Project>

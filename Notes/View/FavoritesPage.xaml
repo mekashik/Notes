@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.View.FavoritesPage"
+             Title="Избранное"
+             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0F1419}"
+             Shell.TitleColor="{AppThemeBinding Light=#FFFFFF, Dark=#66CCFF}"
+Shell.BackgroundColor="{AppThemeBinding Light=#0099FF, Dark=#0F1419}">
+
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <ScrollView Grid.Row="0" Grid.Column="0">
+            <Grid RowDefinitions="*" ColumnDefinitions="*">
+                <CollectionView x:Name="FavoritesCollection"
+                                Grid.Row="0"
+                                SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                         ItemSpacing="8"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView Margin="12,0,12,0">
+                                <SwipeView.RightItems>
+                                    <SwipeItems Mode="Execute">
+                                        <SwipeItem Text="Удалить"
+                                                   BackgroundColor="#FF6B6B"
+                                                   Invoked="OnDeleteNote"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <Frame CornerRadius="16"
+                                       Padding="12"
+                                       BorderColor="#FFD700"
+                                       HasShadow="True"
+                                       BackgroundColor="{AppThemeBinding Light=#FFF8E1, Dark=#3A2F1F}">
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnNoteTapped"/>
+                                    </Frame.GestureRecognizers>
+
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                        <!-- Звезда СЛЕВА -->
+                                        <ImageButton Grid.Column="0"
+                                                     Source="star_filled.png"
+                                                     WidthRequest="28"
+                                                     HeightRequest="28"
+                                                     HorizontalOptions="Start"
+                                                     VerticalOptions="Start"
+                                                     Clicked="OnFavoriteClicked"
+                                                     BackgroundColor="Transparent"/>
+
+                                        <!-- Текст в центре -->
+                                        <Label Grid.Column="1"
+                                               Text="{Binding DisplayTitle}"
+                                               TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="2"
+                                               VerticalTextAlignment="Center"/>
+
+                                        <!-- Дата СПРАВА -->
+                                        <Label Grid.Column="2"
+                                               Text="{Binding CreatedAt, StringFormat='{0:d}'}"
+                                               TextColor="{AppThemeBinding Light=#999999, Dark=#AAAAAA}"
+                                               FontSize="12"
+                                               HorizontalOptions="End"
+                                               VerticalTextAlignment="Center"/>
+                                    </Grid>
+
+                                </Frame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Пустое состояние -->
+                <StackLayout Grid.Row="0"
+                             x:Name="EmptyFavoritesStack"
+                             IsVisible="False"
+                             Padding="20"
+                             Spacing="10"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="CenterAndExpand">
+                    <Label Text="Избранное пусто"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#1A1A1A, Dark=#FFFFFF}"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Добавьте заметки в избранное нажав на звездочку"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#AAAAAA}"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
